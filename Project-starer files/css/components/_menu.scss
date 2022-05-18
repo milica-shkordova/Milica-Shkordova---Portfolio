@@ -1,0 +1,119 @@
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as var;
+@use "sass:math";
+
+.menu {
+    height: 100vh;
+    position: fixed;
+    width: 20%;
+    left: 0;
+    top: 0;
+    background-color: var.$background-color-base;
+    z-index: 1;
+
+    @include mix.tablet-styles {
+        height: var.$gutter-base * 1.73;
+        width: 100%;
+    }
+
+    .inner {
+        @extend %section;
+        @extend %wrap;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .list,
+        .copyright {
+            flex: 0 1 auto;
+        }
+
+        @include mix.tablet-styles {
+            padding: math.div(var.$gutter-base, 3);
+
+            .list {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        img {
+            margin-bottom: var.$gutter-base * 2;
+            width: var.$gutter-base * 4.33;
+
+            @include mix.tablet-styles {
+                margin-bottom: 0;
+                display: inline-block;
+                flex: 0 0 auto;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+
+            & > *:last-child {
+                margin-bottom: 0;
+            }
+
+            li {
+                margin-bottom: math.div(var.$gutter-base, 2);
+
+                a {
+                    text-decoration: none;
+                    color: var.$text-color-base;
+                }
+            }
+        }
+
+        .burger-menu {
+            display: none;
+            margin-bottom: 0;
+
+            i {
+                padding: math.div(var.$gutter-base, 6);
+                border: 1px solid var.$text-color-base;
+                margin-bottom: 0;
+                font-size: math.div(var.$gutter-base, 1.5);
+            }
+
+            @include mix.tablet-styles {
+                display: inline-block;
+                flex: 0 1 auto;
+            }
+        }
+
+        .nav-menu {
+            margin-bottom: var.$gutter-base * 6;
+
+            li {
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            @include mix.tablet-styles {
+                display: none;
+            }
+        }
+
+        .copyright-content {
+            p {
+                margin-bottom: 0;
+                font-size: math.div(var.$gutter-base, 2.3);
+            }
+
+            a {
+                text-decoration: none;
+                color: var.$text-color-base;
+                font-weight: var.$font-weight-bold;
+            }
+
+            @include mix.tablet-styles {
+                display: none;
+            }
+        }
+    }
+}
